@@ -2,10 +2,28 @@
 
 Chainer implementation of [Photo-Realistic Single Image Super-Resolution Using a Generative Adversarial Network](https://arxiv.org/abs/1609.04802)
 
+### Docker
+Requirement:
+nvidia-docker
+make
+driver for nvidia-gpu
+
+To build docker image,
+```
+make build
+```
+
+To run docker container,
+```
+make run
+```
+
+In docker container, you can use `eog` command to view image
+Inference and training can be conducted as follows.
+
 ### Try
 
 ```
-wget https://www.dropbox.com/s/l4s5a6v4licks62/generator_model_3008000.npz
 python superresolution.py --modelpath generator_model_3008000.npz --imagepath input.png --outputpath sr.png
 ```
 
