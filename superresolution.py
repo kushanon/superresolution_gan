@@ -47,10 +47,10 @@ img = numpy.asarray(Image.open(args.imagepath), dtype=numpy.float32)
 if img.shape[2] == 4:
     img = img[:, :, :3]
 
-
-img_variable = img2variable(img)
-img_variable_sr = generator(img_variable, test=True)
-img_sr = variable2img(img_variable_sr)
+with chainer.using_config('train', False):
+    img_variable = img2variable(img)
+    img_variable_sr = generator(img_variable)
+    img_sr = variable2img(img_variable_sr)
 
 resized = cv2.cvtColor(resize_copy(img), cv2.COLOR_RGB2BGR)
 bicubic = cv2.cvtColor(cv2.resize(img / 256, (img.shape[1]*4, img.shape[0]*4)), cv2.COLOR_RGB2BGR)
